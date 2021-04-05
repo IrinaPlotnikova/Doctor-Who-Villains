@@ -54,3 +54,28 @@ btnAdd.addEventListener('click', event => {
 
     i = (i + 1) % 20;
 })
+
+
+let btnDelete = document.getElementById('btnDelete');
+
+btnDelete.addEventListener('click', event=>{
+    let tmp = document.getElementById('cards').firstChild;
+    let next;
+    while (tmp){
+        next = tmp.nextSibling;
+        if (tmp.lastChild.checked){
+            tmp.remove();
+        }
+        tmp = next;
+    }
+})
+
+let btnCheckAll = document.getElementById('btnCheckAll');
+
+btnCheckAll.addEventListener('click', event=>{
+    let tmp = document.getElementById('cards').firstChild;
+    while (tmp){
+        tmp.lastChild.checked = true;
+        tmp = tmp.nextSibling;
+    }
+})
