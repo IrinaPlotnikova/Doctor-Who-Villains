@@ -20,10 +20,10 @@ const villains = [{Name: "Daleks",                First: 1963,  Doctors: [1, 2, 
                   {Name: "Sycorax",               First: 2005,  Doctors: [10, 11],                          Episodes: 2,    img: "Pictures/Sycorax.jpg"},]
 
 function toString(villainInfo){
-    let result = "Name: " + villainInfo.Name + "\n";
-    result += "First appearance: " + villainInfo.First + '\n';
-    result += "Doctors: " + villainInfo.Doctors + '\n';
-    result += "Episodes: " + villainInfo.Episodes + '\n';
+    let result = "Name: " + villainInfo.Name + " \n";
+    result += "First appearance: " + villainInfo.First + " \n";
+    result += "Doctors: " + villainInfo.Doctors + " \n";
+    result += "Episodes: " + villainInfo.Episodes + " \n";
     return result;
 }
 
@@ -57,3 +57,136 @@ btnMainMenuAdd.addEventListener('click', event => {
     document.getElementById('cards').appendChild(villain);
     i = (i + 1) % 20;
 })
+
+
+// отображает в попап кнопки с выбором поля поиска 
+function switchPopUpToSearchTypes(){
+    document.getElementById("popUpSearchTypesBtns").style.display = "flex";
+    document.getElementById("popUpInputData").style.display = "none";
+    document.getElementById("popUpBtnSearchCards").style.display = "none";
+}
+
+
+// отображает в попап элементы для ввода данных
+function switchPopUpToInput(){
+    document.getElementById("popUpSearchTypesBtns").style.display = "none";
+    document.getElementById("popUpInputData").style.display = "block";
+    document.getElementById("popUpBtnSearchCards").style.display = "block";
+}
+
+
+let btnMainMenuSearch = document.getElementById("btnMainMenuSearch");
+
+// показывает попап
+btnMainMenuSearch.addEventListener("click", event =>{
+    document.getElementById("popUpWrapper").style.display = "flex";
+    switchPopUpToSearchTypes();
+})
+
+
+
+let btnPopUpCancel = document.getElementById("btnPopUpCancel");
+
+// скрывает попап
+btnPopUpCancel.addEventListener("click", event =>{
+    document.getElementById("popUpWrapper").style.display = "none";
+})
+
+
+let searchType; // поле поиска, 1 - имя, 4 - год появления, 6 - докторы, 8 - количество эпизодов
+let hiddenVillains = []; // массив с непоходящими под условие поиска контейнерами
+
+
+// отображение скрытых контейнеров
+let btnMainMenuShowHidden = document.getElementById("btnMainMenuShowHidden");
+btnMainMenuShowHidden.addEventListener("click", event =>{
+    hiddenVillains.forEach(villainBox => {
+        villainBox.style.display = "flex";
+    });
+    hiddenVillains = [];
+    document.getElementById("btnMainMenuShowHidden").style.display = "none";
+})
+
+
+let popUpSearchTypesBtns = document.getElementById("popUpSearchTypesBtns");
+
+// отлавливает нажание на кнопку и определяет поле поиска
+popUpSearchTypesBtns.addEventListener("click", event=>{
+    switchPopUpToInput();
+    let searchBtn = event.target.closest("button");
+ 
+    if (searchBtn == document.getElementById("popUpBtnName")){
+        document.getElementById("textBoxInputData").value = "Daleks";
+        searchType = 1;
+    }
+    else if (searchBtn == document.getElementById("popUpBtnAppearance")){
+        document.getElementById("textBoxInputData").value = "1963";
+        searchType = 4;
+    }
+    else if (searchBtn == document.getElementById("popUpBtnDoctors")){
+        document.getElementById("textBoxInputData").value = "1,2,3";
+        searchType = 6;
+    } 
+    else{
+        document.getElementById("textBoxInputData").value = "104";
+        searchType = 8;
+    }
+})
+
+
+// обертка для поиска
+let popUpBtnSearchCards = document.getElementById("popUpBtnSearchCards");
+popUpBtnSearchCards.addEventListener("click", event =>{
+    if (searchType == 6)
+        searchDoctors();
+    else
+        searchNotDoctors();
+    document.getElementById("popUpWrapper").style.display = "none";
+})
+
+
+// получение поля из контейнера
+function getInfo(villainBox){
+    let info = villainBox.childNodes[1].textContent.split(' ');
+    if (searchType == 6){
+        return info[searchType].split(',');
+    }
+    return info[searchType];
+}
+
+
+// поиск подходящих контейнеров, когда поле поиска НЕ докторы
+function searchNotDoctors(){
+    let searchValue = document.getElementById("textBoxInputData").value;
+    let cards = document.getElementById("cards").childNodes;
+    let countHiddenBoxes = 0;
+    cards.forEach(function(villainBox){
+        if (getInfo(villainBox, searchType) != searchValue){
+            villainBox.style.display = "none";
+            hiddenVillains.push(villainBox);  
+            countHiddenBoxes++;
+        }
+    });
+    if (countHiddenBoxes > 0){
+        document.getElementById("btnMainMenuShowHidden").style.display = "block";
+    }
+}
+
+
+// поиск подходящих контейнеров, когда поле поиска НЕ докторы
+function searchDoctors(){
+    let searchValues = document.getElementById("textBoxInputData").value.split(',');
+    let cards = document.getElementById("cards").childNodes;
+    let countHiddenBoxes = 0;
+    cards.forEach(function(villainBox){
+        let doctors = getInfo(villainBox);
+        if (!searchValues.every(doctor => doctors.includes(doctor))){
+            villainBox.style.display = "none";
+            hiddenVillains.push(villainBox);  
+            countHiddenBoxes++;
+        }
+    });
+    if (countHiddenBoxes > 0){
+        document.getElementById("btnMainMenuShowHidden").style.display = "block";
+    }
+}
