@@ -27,12 +27,12 @@
             <button class="btnMainMenuSearch" id="popUpBtnNumberOfEpisodes"> Number of episodes </button>
         </div>
 
-        <div class="popUpInputData" id="popUpInputData">
-            <label class="lblInputData"> Input value: </label>
-            <input class="textBoxInputData" id="textBoxInputData"></input>
-        </div>
-
-        <button class="popUpBtnSearchCards" id="popUpBtnSearchCards">Search!</button>
+        <form class="formInputData" onsubmit="catchSubmit(); return false;" id="formInputData">
+            <label class="formlblInputData"> Input value: </label>
+            <input type="text" class="formtextBoxInputData" id="formtextBoxInputData"></input>
+            <button type="submit" class="btnMainMenuSearch">Search!</button>
+        </form>
+        
     </div>
 
 </body>

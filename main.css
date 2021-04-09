@@ -20,7 +20,7 @@ button{
 
 button:hover{
     font-weight: bold;
-    border: white 2px solid;
+    border: darkblue 2px solid;
 }
 
 img{
@@ -96,19 +96,18 @@ img{
     width: 1200px;
 }
 
-.popUpInputData{
+.formInputData{
     display: none;
-    padding-top: 2px;
 }
 
-.textBoxInputData{
-    width: 650px;
-    height: 28px;
+.formtextBoxInputData{
+    
+    width: 800px;
+    height: 30px;
+    margin-right: 23px;
+    font-size: medium;
 }
 
-.popUpBtnSearchCards{
-    display: none;
-    background: blue;
-    right: 180px;
-    position: fixed;
+.formlblInputData{
+    font-size: large;
 }
