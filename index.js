@@ -63,23 +63,17 @@ btnMainMenuAdd.addEventListener('click', event => {
 let btnMainMenuDelete = document.getElementById('btnMainMenuDelete');
 
 btnMainMenuDelete.addEventListener('click', event=>{
-    let tmp = document.getElementById('cards').firstChild;
-    let next;
-    while (tmp){
-        next = tmp.nextSibling;
-        if (tmp.lastChild.checked){
-            tmp.remove();
+    let checkBoxes = document.querySelectorAll("input");
+    checkBoxes.forEach(box => {
+        if (box.checked){
+            box.parentElement.remove();
         }
-        tmp = next;
-    }
+    });
 })
 
 let btnMainMenuCheckAll = document.getElementById('btnMainMenuCheckAll');
 
 btnMainMenuCheckAll.addEventListener('click', event=>{
-    let tmp = document.getElementById('cards').firstChild;
-    while (tmp){
-        tmp.lastChild.checked = true;
-        tmp = tmp.nextSibling;
-    }
+    let checkBoxes = document.querySelectorAll("input");
+    checkBoxes.forEach(box => {box.checked = true; });
 })
