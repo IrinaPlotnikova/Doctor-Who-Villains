@@ -57,3 +57,23 @@ btnMainMenuAdd.addEventListener('click', event => {
     document.getElementById('cards').appendChild(villain);
     i = (i + 1) % 20;
 })
+
+
+
+let btnMainMenuDelete = document.getElementById('btnMainMenuDelete');
+
+btnMainMenuDelete.addEventListener('click', event=>{
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
+    checkBoxes.forEach(box => {
+        if (box.checked){
+            box.parentElement.remove();
+        }
+    });
+})
+
+let btnMainMenuCheckAll = document.getElementById('btnMainMenuCheckAll');
+
+btnMainMenuCheckAll.addEventListener('click', event=>{
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
+    checkBoxes.forEach(box => {box.checked = true; });
+})
