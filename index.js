@@ -125,6 +125,7 @@ popUpSearchTypesBtns.addEventListener("click", event=>{
 
 // обработка submit
 function catchSubmit(){
+    event.preventDefault();
     let searchValues = document.getElementById("formtextBoxInputData").value.split(' ');
     search(searchValues);
     document.getElementById("popUpWrapper").style.display = "none";
