@@ -63,6 +63,7 @@ img{
     width: 50px;
 }
 
+
 .btnMainMenuSearch{
     background: blue;
 }
@@ -110,4 +111,8 @@ img{
 
 .formlblInputData{
     font-size: large;
+
+.btnMainMenuDelete{
+    background-color:#1F0772;
+
 }

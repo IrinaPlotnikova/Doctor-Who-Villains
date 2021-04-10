@@ -60,6 +60,7 @@ btnMainMenuAdd.addEventListener('click', event => {
 
 
 
+
 let btnMainMenuSearch = document.getElementById("btnMainMenuSearch");
 
 // показывает попап
@@ -159,3 +160,22 @@ function search(searchValues){
         document.getElementById("btnMainMenuShowHidden").style.display = "block";
     }
 }
+
+let btnMainMenuDelete = document.getElementById('btnMainMenuDelete');
+
+btnMainMenuDelete.addEventListener('click', event=>{
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
+    checkBoxes.forEach(box => {
+        if (box.checked){
+            box.parentElement.remove();
+        }
+    });
+})
+
+let btnMainMenuCheckAll = document.getElementById('btnMainMenuCheckAll');
+
+btnMainMenuCheckAll.addEventListener('click', event=>{
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
+    checkBoxes.forEach(box => {box.checked = true; });
+})
+
