@@ -63,7 +63,7 @@ btnMainMenuAdd.addEventListener('click', event => {
 let btnMainMenuDelete = document.getElementById('btnMainMenuDelete');
 
 btnMainMenuDelete.addEventListener('click', event=>{
-    let checkBoxes = document.querySelectorAll("input");
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
     checkBoxes.forEach(box => {
         if (box.checked){
             box.parentElement.remove();
@@ -74,6 +74,6 @@ btnMainMenuDelete.addEventListener('click', event=>{
 let btnMainMenuCheckAll = document.getElementById('btnMainMenuCheckAll');
 
 btnMainMenuCheckAll.addEventListener('click', event=>{
-    let checkBoxes = document.querySelectorAll("input");
+    let checkBoxes = document.querySelectorAll("input[type='checkbox']");
     checkBoxes.forEach(box => {box.checked = true; });
 })
