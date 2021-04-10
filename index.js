@@ -123,13 +123,16 @@ popUpSearchTypesBtns.addEventListener("click", event=>{
     document.getElementById("formInputData").style.display = "block";
 })
 
+
+let myForm = document.getElementById("formInputData");
+
 // обработка submit
-function catchSubmit(){
+myForm.addEventListener("submit", event =>{
     event.preventDefault();
     let searchValues = document.getElementById("formtextBoxInputData").value.split(' ');
     search(searchValues);
     document.getElementById("popUpWrapper").style.display = "none";
-}
+})
 
 
 // получение поля из контейнера
