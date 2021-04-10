@@ -12,9 +12,29 @@
         <button class="btnMainMenuSearch" id="btnMainMenuSearch"> Search </button>
         <button class="btnMainMenuDelete" id="btnMainMenuDelete"> Delete </button>
         <button class="btnMainMenuDelete" id="btnMainMenuCheckAll"> Check all </button>
+        <button class="btnMainMenuShowHidden" id="btnMainMenuShowHidden">Show hidden</button>
     </div>
     
     <flex-box class="cards" id="cards"></flex-box>
+
+    <div class="popUpWrapper" id="popUpWrapper">
+        <button class="btnPopUpCancel" id="btnPopUpCancel"> Cancel </button>
+        
+        <div class="popUpSearchTypesBtns" id="popUpSearchTypesBtns">
+            <button class="btnMainMenuSearch" id="popUpBtnName"> Name </button>
+            <button class="btnMainMenuSearch" id="popUpBtnAppearance"> Appearance </button>
+            <button class="btnMainMenuSearch" id="popUpBtnDoctors"> Doctors </button>
+            <button class="btnMainMenuSearch" id="popUpBtnNumberOfEpisodes"> Number of episodes </button>
+        </div>
+
+        <form class="formInputData" id="formInputData">
+            <label class="formlblInputData"> Input value: </label>
+            <input type="text" class="formtextBoxInputData" id="formtextBoxInputData"></input>
+            <button type="submit" class="btnMainMenuSearch">Search!</button>
+        </form>
+        
+    </div>
+
 </body>
 
 </html>
